@@ -1,0 +1,29 @@
+# Obtido a partir do comando kubectl api-resources
+apiVersion: apps/v1
+# Qual acao o kubernetes irá executar
+kind: ReplicaSet
+# Informações
+metadata:
+  name: primeiroreplicaset
+# Especificações do pod
+spec:
+  # Quantidade de replicas que desejo manter de pé
+  replicas: 10
+  selector:
+    # Seletor de pod, as labels aqui declaradas devem bater com as labels do pod declarado abaixo no template.
+    matchLabels:
+      app: nginx
+  # especificações do pod, que será utilizado para o replica set
+  template:
+    metadata:
+      # devendo ser o mesmo nome do pod
+      labels:
+        app: nginx
+    spec:
+      # Containers do pod
+      containers:
+      # Name do container dentro do pod
+      - name: meucontainer
+        # Imagem que será executada
+        image: kubedevio/nginx-color:green
+        
