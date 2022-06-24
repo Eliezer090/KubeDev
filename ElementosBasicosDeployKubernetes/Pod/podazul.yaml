@@ -1,0 +1,17 @@
+# v1 é a padrão do kubernetes
+apiVersion: v1
+# É o que estamos criando, neste caso um pod
+kind: Pod
+# Identificador do pod
+metadata:
+  name: podazul
+  labels:
+    app: nginx
+    versao: azul
+# Especificações do que este pod irá fazer/rodar
+spec:
+  containers:
+  #Name do container dentro do pod
+  - name: primeirocontainer
+    # Imagem que será executada
+    image: kubedevio/nginx-color:blue
