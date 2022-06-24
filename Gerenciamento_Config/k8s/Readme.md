@@ -23,6 +23,5 @@
 
 # Link
 - [ConfigMap e Secrets](https://kubedev.club.hotmart.com/lesson/PeA5J3goeW/configmap-e-secret)
-- [Exercicio atribuindo namespaces](https://kubedev.club.hotmart.com/lesson/k7QlmpD2ey/exercicios)
 
 
