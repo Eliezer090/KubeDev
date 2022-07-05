@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: eliezer123/pedelogo-catalogo:v1.0.0
+        ports:
+        - containerPort: 80
+          name: http
+        - containerPort: 443
+          name: https
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /read
+            port: 80
+            scheme: HTTP
+          timeoutSeconds: 1
+          periodSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 80
+            scheme: HTTP
+          failureThreshold: 30
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+            scheme: HTTP
+          failureThreshold: 1
+          periodSeconds: 1
+          initialDelaySeconds: 5
+        envFrom:
+          - configMapRef:
+              name: api-configmap
+        env:
+        - name: Mongo__User
+          valueFrom:
+            secretKeyRef:
+              key: MONGO_INITDB_ROOT_USERNAME
+              name: mongodb-secret
+        - name: Mongo__Password
+          valueFrom:
+            secretKeyRef:
+              key: MONGO_INITDB_ROOT_PASSWORD
+              name: mongodb-secret
