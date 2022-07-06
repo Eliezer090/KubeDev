@@ -1,0 +1,4 @@
+# Limit Range
+- Serve para definirmos limites para a aplicação rodar, por exemplo se for esquecido de colocar os limites para a aplicação o tiver o LimitRange aplicado no cluster, cada aplicação terá os limites definidos automaticamente pelo kubernates baseado no LimitRange criado.
+- Serve também para proteger, pois se o limitrange tiver setado com um valor para cpu e no arquivo de deployment setarmos um valor maior ele dará erro, pois estamos tentando setar um valor maior do que o permitido ele nao sobe o pod.
+- O LimitRange pode ser definido por namespace também, com isso cada parte terá suas configs de limites.
