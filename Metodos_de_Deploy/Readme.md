@@ -1,0 +1,2 @@
+# Modos de deploy
+- O obetivo desta seção é apresentar outras formas de realizar deploy da aplicação para que possamos ter um maior controle. persistencia e resiliencia do que está sendo feito ou criado no cluster.
