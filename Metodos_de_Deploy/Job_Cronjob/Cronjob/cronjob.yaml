@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pi-job
+spec:
+  # Detalhes do que é cada * https://en.wikipedia.org/wiki/Cron
+  schedule: "*/5 * * * *"
+  # Definição de como os jobs vao se comportar verificar os valores
+  #concurrencyPolicy: 
+  jobTemplate:
+    spec:
+      parallelism: 2
+      backoffLimit: 4
+      completions: 2
+      template:
+        spec:
+          containers:
+          - name: pi
+            image: perl:5.34
+            command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+          restartPolicy: Never
+  

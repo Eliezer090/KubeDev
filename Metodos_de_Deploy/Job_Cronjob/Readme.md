@@ -1,0 +1,2 @@
+# Jobs e CronJob
+- São utilizados para tarefas unicas, rapidas e que tem um fim, onde os demais elementos de deploy do kubernetes nao atendem, uma vez que esta tarefa deve matar o pod após sua execução e os kinds estudados até agora nao sabem quando acabou o processamento deixando o pod la para sempre.
